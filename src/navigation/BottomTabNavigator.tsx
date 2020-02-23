@@ -1,10 +1,10 @@
 import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import TabBarIcon from "../components/TabBarIcon";
-import HomeScreen from "../screens/HomeScreen";
+import TheatresScreen from "../screens/TheatresScreen";
 import TopRatedScreen from "../screens/TopRatedScreen";
 import PopularScreen from "../screens/PopularScreen";
-import UpComingScreen from "../screens/UpComingScreen";
+import UpcomingScreen from "../screens/UpcomingScreen";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Home";
@@ -18,12 +18,12 @@ export default function BottomTabNavigator({ navigation, route }) {
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="Theatres"
+        component={TheatresScreen}
         options={{
-          title: "Home",
+          title: "Theatres",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="ios-home" />
+            <TabBarIcon focused={focused} name="ios-tv" />
           )
         }}
       />
@@ -48,12 +48,12 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
-        name="UpComing"
-        component={UpComingScreen}
+        name="Upcoming"
+        component={UpcomingScreen}
         options={{
-          title: "Up Coming",
+          title: "Upcoming",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="ios-calendar" />
+            <TabBarIcon focused={focused} name="ios-hourglass" />
           )
         }}
       />
@@ -66,13 +66,13 @@ function getHeaderTitle(route) {
     route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
 
   switch (routeName) {
-    case "Home":
-      return "Latest movies";
+    case "Theatres":
+      return "Movies in Theatres";
     case "Popular":
-      return "Most popular movies";
+      return "Most Popular Movies";
     case "TopRated":
-      return "Best rated movies";
-    case "UpComing":
-      return "Up coming movies";
+      return "Best Rated Movies";
+    case "Upcoming":
+      return "Upcoming Movies";
   }
 }

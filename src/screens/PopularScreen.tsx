@@ -1,10 +1,8 @@
-import * as React from "react";
-import { Text, View } from "react-native";
+import React from "react";
+
+import ScreenType from "../constants/ScreenType";
+import BaseScreen from "./BaseScreen";
 
 export default function PopularScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Popular!</Text>
-    </View>
-  );
+  return <BaseScreen screenType={ScreenType.POPULAR} />;
 }
