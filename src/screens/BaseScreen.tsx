@@ -1,5 +1,5 @@
 import React, { useEffect, useState, ReactComponentElement } from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import GridView from "../components/GridView";
 import * as restClient from "../api/restClient";
 import ScreenType from "../constants/ScreenType";
@@ -30,17 +30,11 @@ export default function BaseScreen({ screenType }) {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View>
       <GridView items={items} />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#222"
-  }
-});
 
 function getUrl(screen: ScreenType): String {
   switch (screen) {
@@ -56,5 +50,3 @@ function getUrl(screen: ScreenType): String {
       return "movie/latest";
   }
 }
-
-// export { HomeScreen, ScreenType };
