@@ -2,16 +2,23 @@ import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import * as restClient from "../api/restClient";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 const ASPECT_RATIO = 2 / 3;
 
 const MovieListItem = ({ item }) => {
+  const { navigate } = useNavigation();
+
+  function onClick() {
+    navigate("MovieDetails");
+  }
+
   if (item === {}) {
     return <View style={styles.container} />;
   } else {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.touchable}>
+        <TouchableOpacity onPress={onClick} style={styles.touchable}>
           <Image
             source={{ uri: restClient.getPoster(item) }}
             style={styles.image}
