@@ -22,7 +22,13 @@ export default function BaseScreen({ screenType }) {
   }
 
   function setData(res) {
-    setItems(res.results);
+    if (res.results.length % 3 === 1) {
+      setItems([...res.results, {}, {}]);
+    } else if (res.results.length % 3 === 2) {
+      setItems([...res.results, {}]);
+    } else {
+      setItems(res.results);
+    }
   }
 
   useEffect(() => {

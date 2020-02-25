@@ -6,16 +6,20 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 const ASPECT_RATIO = 2 / 3;
 
 const MovieListItem = ({ item }) => {
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.touchable}>
-        <Image
-          source={{ uri: restClient.getPoster(item) }}
-          style={styles.image}
-        />
-      </TouchableOpacity>
-    </View>
-  );
+  if (item === {}) {
+    return <View style={styles.container} />;
+  } else {
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.touchable}>
+          <Image
+            source={{ uri: restClient.getPoster(item) }}
+            style={styles.image}
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -25,7 +29,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     margin: 6,
-    backgroundColor: "#111111",
     shadowColor: "black",
     shadowOffset: { width: 4, height: 4 },
     shadowRadius: 4,
