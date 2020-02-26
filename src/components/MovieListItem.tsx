@@ -10,12 +10,12 @@ const MovieListItem = ({ item }) => {
   const { navigate } = useNavigation();
 
   function onClick() {
-    navigate("MovieDetails");
+    if (item.id) {
+      navigate("MovieDetails", { item: "Hola" });
+    }
   }
 
-  if (item === {}) {
-    return <View style={styles.container} />;
-  } else {
+  if (item.id) {
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={onClick} style={styles.touchable}>
@@ -26,6 +26,8 @@ const MovieListItem = ({ item }) => {
         </TouchableOpacity>
       </View>
     );
+  } else {
+    return <View style={styles.container} />;
   }
 };
 
