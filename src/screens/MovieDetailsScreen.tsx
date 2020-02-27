@@ -11,8 +11,6 @@ const MovieDetailsScreen = ({ route }) => {
   async function requestData() {
     try {
       const response = await restClient.getData(getUrl(route.params.item));
-      console.log(response.data);
-
       setMovie(response.data);
     } catch (error) {
       //TODO handle error
@@ -33,17 +31,21 @@ const MovieDetailsScreen = ({ route }) => {
             style={styles.imageBackdrop}
           />
 
+          <Text numberOfLines={1} style={styles.textTitle}>
+            {movie.title}
+          </Text>
           <View style={styles.containerPoster}>
+            <Image
+              source={{ uri: imagesUtils.getPoster(movie) }}
+              style={styles.imagePoster}
+            />
             <View style={styles.containerIcon}>
               <Ionicons name={"ios-timer"} size={30} style={styles.icon} />
               <Text style={styles.textStats}>
                 {timeUtils.timeConvert(movie.runtime)}
               </Text>
             </View>
-            <Image
-              source={{ uri: imagesUtils.getPoster(movie) }}
-              style={styles.imagePoster}
-            />
+
             <View style={styles.containerIcon}>
               <Ionicons
                 name={"ios-star-outline"}
@@ -52,14 +54,14 @@ const MovieDetailsScreen = ({ route }) => {
               />
               <Text style={styles.textStats}>{`${movie.vote_average}/10`}</Text>
             </View>
+            <View style={styles.containerIcon}>
+              <Ionicons name={"ios-calendar"} size={30} style={styles.icon} />
+              <Text style={styles.textStats}>{movie.release_date}</Text>
+            </View>
           </View>
-
-          <Text numberOfLines={1} style={styles.textTitle}>
-            {movie.title}
-          </Text>
         </View>
 
-        <View style={styles.containerDescription}></View>
+        <Text style={styles.textOverview}>{movie.overview}</Text>
       </View>
     );
   } else {
@@ -70,13 +72,7 @@ const MovieDetailsScreen = ({ route }) => {
 const styles = StyleSheet.create({
   containerHero: {
     backgroundColor: "white",
-    paddingBottom: 10,
-    borderRadius: 20,
-    shadowColor: "black",
-    shadowOffset: { width: 2, height: 2 },
-    shadowRadius: 2,
-    shadowOpacity: 0.5,
-    elevation: 6
+    paddingBottom: 120
   },
   container: {
     flex: 1,
@@ -86,8 +82,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignContent: "center",
     alignItems: "center",
-    top: "-25%",
-    paddingHorizontal: "2%"
+    top: "56%",
+    paddingHorizontal: "2%",
+    position: "absolute",
+    width: "100%"
   },
   containerData: {
     flexDirection: "row",
@@ -95,11 +93,11 @@ const styles = StyleSheet.create({
     flex: 1
   },
   containerIcon: {
-    flex: 1,
+    flex: 2,
     flexDirection: "column",
     textAlign: "center",
-    marginTop: "15%",
-    height: "20%",
+    marginTop: "20%",
+    height: "12%",
     alignItems: "center"
   },
   imageBackdrop: {
@@ -109,26 +107,34 @@ const styles = StyleSheet.create({
   },
   imagePoster: {
     aspectRatio: 2 / 3,
-    flex: 1,
+    flex: 3,
     borderColor: "white",
     borderWidth: 4
   },
   textTitle: {
-    fontSize: 30,
-    alignSelf: "center",
-    marginTop: "-25%",
-    textAlign: "center",
-    marginHorizontal: 8
+    fontSize: 20,
+    width: "64.5%",
+    alignSelf: "flex-end",
+    marginTop: "-15%",
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    backgroundColor: "#00000080",
+    color: "white"
+  },
+  textOverview: {
+    fontSize: 14,
+    backgroundColor: "white",
+    marginTop: 2,
+    paddingTop: 8,
+    padding: 16,
+    textAlign: "justify"
   },
   textStats: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: "300"
   },
   icon: {
-    flex: 1
-  },
-  containerDescription: {
-    marginVertical: 10
+    flex: 2
   }
 });
 
