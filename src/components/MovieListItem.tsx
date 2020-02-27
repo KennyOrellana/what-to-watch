@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import * as restClient from "../api/restClient";
+import * as imagesUtils from "../api/imagesUtils";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
@@ -11,7 +11,9 @@ const MovieListItem = ({ item }) => {
 
   function onClick() {
     if (item.id) {
-      navigate("MovieDetails", { item: "Hola" });
+      navigate("MovieDetails", {
+        item: item
+      });
     }
   }
 
@@ -20,7 +22,7 @@ const MovieListItem = ({ item }) => {
       <View style={styles.container}>
         <TouchableOpacity onPress={onClick} style={styles.touchable}>
           <Image
-            source={{ uri: restClient.getPoster(item) }}
+            source={{ uri: imagesUtils.getPoster(item) }}
             style={styles.image}
           />
         </TouchableOpacity>

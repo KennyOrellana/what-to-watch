@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ReactComponentElement } from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import GridView from "../components/GridView";
 import * as restClient from "../api/restClient";
