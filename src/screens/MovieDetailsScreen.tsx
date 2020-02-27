@@ -5,7 +5,8 @@ import { Ionicons } from "@expo/vector-icons";
 import * as restClient from "../api/restClient";
 import * as timeUtils from "../utils/timeUtils";
 
-const MovieDetailsScreen = ({ route }) => {
+const MovieDetailsScreen = ({ navigation, route }) => {
+  navigation.setOptions({ headerTitle: getHeaderTitle(route) });
   const [movie, setMovie] = useState();
 
   async function requestData() {
@@ -52,7 +53,9 @@ const MovieDetailsScreen = ({ route }) => {
                 size={30}
                 style={styles.icon}
               />
-              <Text style={styles.textStats}>{`${movie.vote_average}/10`}</Text>
+              <Text
+                style={styles.textStats}
+              >{`${movie.vote_average} / 10`}</Text>
             </View>
             <View style={styles.containerIcon}>
               <Ionicons name={"ios-calendar"} size={30} style={styles.icon} />
@@ -97,7 +100,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     textAlign: "center",
     marginTop: "20%",
-    height: "12%",
+    height: "8%",
     alignItems: "center"
   },
   imageBackdrop: {
@@ -140,6 +143,14 @@ const styles = StyleSheet.create({
 
 function getUrl(item): String {
   return `movie/${item.id}`;
+}
+
+function getHeaderTitle(route) {
+  if (route.params.item.title.length > 30) {
+    return route.params.item.title.substring(0, 30) + "...";
+  } else {
+    return route.params.item.title;
+  }
 }
 
 export default MovieDetailsScreen;
