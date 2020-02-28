@@ -6,7 +6,7 @@ import * as timeUtils from "../utils/timeUtils";
 
 const MovieHero = ({ movie }) => {
   return (
-    <View style={styles.container}>
+    <View>
       <View style={styles.containerHero}>
         <Image
           source={{ uri: imagesUtils.getBackdrop(movie) }}
@@ -38,7 +38,6 @@ const MovieHero = ({ movie }) => {
           </View>
         </View>
       </View>
-
       <Text style={styles.textOverview}>{movie.overview}</Text>
     </View>
   );
@@ -50,10 +49,6 @@ const styles = StyleSheet.create({
   containerHero: {
     backgroundColor: "white",
     paddingBottom: 120
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "#eee"
   },
   containerPoster: {
     flexDirection: "row",

@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import * as restClient from "../api/restClient";
 
 import MovieHero from "../components/MovieHero";
+import VideosList from "../components/VideosList";
 
 const MovieDetailsScreen = ({ navigation, route }) => {
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
@@ -27,6 +28,7 @@ const MovieDetailsScreen = ({ navigation, route }) => {
     return (
       <View style={styles.container}>
         <MovieHero movie={movie} />
+        <VideosList videos={movie.videos.results} />
       </View>
     );
   } else {
@@ -36,8 +38,7 @@ const MovieDetailsScreen = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#eee"
+    flex: 1
   }
 });
 
