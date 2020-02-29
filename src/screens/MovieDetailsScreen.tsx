@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-
 import * as restClient from "../api/restClient";
-
 import MovieHero from "../components/MovieHero";
 import VideosList from "../components/VideosList";
+import LoadingProgressBar from "../components/LoadingProgressBar";
 
 const MovieDetailsScreen = ({ navigation, route }) => {
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
@@ -32,7 +31,7 @@ const MovieDetailsScreen = ({ navigation, route }) => {
       </View>
     );
   } else {
-    return null;
+    return <LoadingProgressBar />;
   }
 };
 
